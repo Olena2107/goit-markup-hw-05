@@ -18,6 +18,7 @@ element.style {
   --gray-title-color: #434455;
   --milk-title-color: #f4f4fd;
   --br-hero: linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7));
+  --typical-transform: 250ms cubic-bezier(0.4, 0, 0.2, 1)
 }
 p,
 h1,
@@ -53,13 +54,13 @@ ul {
 }
 .link {
   text-decoration: none;
+  transition: color transform var(--typical-transform);
 }
 .container {
   width: 1158px;
   padding-left: 15px;
   padding-right: 15px;
   margin: 0 auto;
-  outline: 2px solid red;
 }
 .link:focus,
 .link:hover {
@@ -107,6 +108,7 @@ ul {
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--main-title-color);
+  transition: color var(--typical-transform);
 }
 
 .header-list {
@@ -133,6 +135,7 @@ ul {
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: var(--main-title-color);
+  transition: color var(--typical-transform);
 }
 .header-address {
   font-style: normal;
@@ -148,6 +151,20 @@ ul {
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: var(--gray-title-color);
+  transition: color var(--typical-transform);
+}
+.current{
+  position: relative;
+}
+.current::after{
+content: "";
+position: absolute;
+left: 0;
+bottom: -24px;
+width:100%;
+height: 4px;
+border-radius: 2px;
+background-color: var(--ocean-bgc-hover-focus-active-color);
 }
 /*/----HERO-----*/
 .hero {
@@ -191,6 +208,7 @@ ul {
   margin: 0 auto;
   cursor: pointer;
   border: transparent;
+  transition: background-color var(--typical-transform);
 }
 .hero-btn:hover {
   background-color: var(--ocean-bgc-hover-focus-active-color);
@@ -349,6 +367,7 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color var(--typical-transform), border-color var(--typical-transform);
 }
 .team-soc-link:hover,
 .team-soc-link:focus {
@@ -398,6 +417,7 @@ ul {
   justify-content: center;
   border: 1px solid #8e8f99;
   fill: #8e8f99;
+  transition: border-color var(--typical-transform), fill var(--typical-transform);
 }
 .customers-icon {
   fill: curentColor;
@@ -436,6 +456,7 @@ ul {
   color: #4d5ae5;
   cursor: pointer;
   margin-bottom: 18px;
+  transition: color var(--typical-transform);
 }
 .footer-navigation-main {
   font-family: "Raleway", sans-serif;
@@ -488,6 +509,7 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: border-color var(--typical-transform), background-color var(--typical-transform);
 }
 
 .footer-soc-icon {
@@ -541,6 +563,7 @@ ul {
   background-color: var(--milk-title-color);
   cursor: pointer;
   border: transparent;
+  transition: color var(--typical-transform),  background-color var(--typical-transform), box-shadow var(--typical-transform);
 }
 .novigation-btn:hover,
 .novigation-btn:focus {
@@ -563,6 +586,7 @@ ul {
 
 .services-link {
  display: block;
+ transition: tbox-shadow var(--typical-transform);
 }
 .services-link:hover,
 .services-link:focus {
@@ -574,8 +598,11 @@ ul {
   width: 100%;
 }
 .services-item {
-
 }
+.services-item:hover .services-top-text{
+  transform: translate(0);
+}
+
 .services-main-text {
   border-right: 1px solid #e7e9fc;
   border-left: 1px solid #e7e9fc;
@@ -599,4 +626,65 @@ ul {
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: var(--gray-title-color);
+}
+.services-top-wrap{
+  position: relative;
+  overflow: hidden;
+}
+.services-top-text{
+  position: absolute;
+  top: 0;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: 0.02em;
+color: var(--milk-title-color);
+background-color: #4D5AE5;
+padding: 40px;
+height: 100%;
+transform: translateY(100%);
+transition: transform var(--typical-transform);
+overflow: auto;
+}
+.backdrop{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(46, 47, 66, 0.4);
+  transition: opacity var(--typical-transform), visibility var(--typical-transform) ;
+}
+.modal{
+position: absolute;
+width: 408px;
+min-height: 576px;
+left: 50%;
+top: 50%;
+transform: translate(-50%,-50%) scale(1) rotate(0);
+transition: transform var(--typical-transform);
+background: #FCFCFC;
+box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);
+border-radius: 4px;
+padding: 20px;
+}
+.backdrop.is-hidden.modal{
+  transform: translate(-50%,-50%) scaleY(0) rotate(-180deg);
+}
+.button-close{
+width: 24px;
+height: 24px;
+border: 1px solid rgba(0, 0, 0, 0.1);
+background-color: transparent;
+border-radius: 50%;
+display: block;
+margin-left: auto;
+}
+.button-icon{
+  display: flex;
+  justify-content: center;
+}
+.is-hidden{
+  opacity: 0;
+  visibility: hidden;
+pointer-events: none;
 }
