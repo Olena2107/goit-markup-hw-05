@@ -155,6 +155,7 @@ ul {
 }
 .current {
   position: relative;
+  color: var(--ocean-bgc-hover-focus-active-color);
 }
 .current::after {
   content: "";
